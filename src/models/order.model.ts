@@ -7,7 +7,7 @@ import {Entity, model, property} from '@loopback/repository';
 @model({name: 'Order'})
 export class Order extends Entity {
   constructor(data?: Partial<Order>) {
-    super();
+    super(data)
     if (data != null && typeof data === 'object') {
       Object.assign(this, data);
     }
@@ -17,10 +17,11 @@ export class Order extends Entity {
    *
    */
   @property({
-    jsonSchema: {
-      type: 'string',
-      id: true,
-    }
+
+    id: true,
+    type: 'string'
+
+
   })
   orderID?: string;
 
@@ -28,10 +29,10 @@ export class Order extends Entity {
    *
    */
   @property({
-    jsonSchema: {
-      type: 'string',
-      maxLength: 256,
-    }
+
+    type: 'string',
+    maxLength: 256,
+
   })
   userID?: string;
 
@@ -39,42 +40,12 @@ export class Order extends Entity {
    *
    */
   @property({
-    jsonSchema: {
-      type: 'number',
-      minimum: 0,
-    }
+
+    type: 'number',
+    minimum: 0,
+
   })
   price?: number;
-
-  /**
-   *
-   */
-  @property({
-    jsonSchema: {
-      type: 'array',
-      items: {
-        type: 'object',
-        properties: {
-          goodID: {
-            type: 'string',
-          },
-          num: {
-            type: 'integer',
-            minimum: 0,
-          },
-          goodPrice: {
-            type: 'number',
-            minimum: 0,
-          },
-        },
-      },
-    }
-  })
-  goods?: {
-    goodID?: string;
-    num?: number;
-    goodPrice?: number;
-  }[];
 
 }
 

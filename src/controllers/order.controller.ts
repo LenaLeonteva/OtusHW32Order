@@ -1,5 +1,8 @@
-import {api, operation, param, requestBody} from '@loopback/rest';
+import {inject} from '@loopback/core';
+import {repository} from '@loopback/repository';
+import {Response, RestBindings, api, operation, param, requestBody} from '@loopback/rest';
 import {Order} from '../models/order.model';
+import {OrderRepository} from '../repositories';
 
 /**
  * The controller class is generated from OpenAPI spec with operations tagged
@@ -14,7 +17,6 @@ import {Order} from '../models/order.model';
         properties: {
           orderID: {
             type: 'string',
-            id: true,
           },
           userID: {
             type: 'string',
@@ -23,25 +25,6 @@ import {Order} from '../models/order.model';
           price: {
             type: 'number',
             minimum: 0,
-          },
-          goods: {
-            type: 'array',
-            items: {
-              type: 'object',
-              properties: {
-                goodID: {
-                  type: 'string',
-                },
-                num: {
-                  type: 'integer',
-                  minimum: 0,
-                },
-                goodPrice: {
-                  type: 'number',
-                  minimum: 0,
-                },
-              },
-            },
           },
         },
       },
@@ -82,7 +65,12 @@ import {Order} from '../models/order.model';
   paths: {},
 })
 export class OrderController {
-  constructor() { }
+  constructor(
+    @repository(OrderRepository) private orderRepo: OrderRepository,
+    @inject(RestBindings.Http.RESPONSE) private response: Response,
+  ) {
+    console.log('Hello from Order Controller')
+  }
   /**
    *
    *
@@ -121,8 +109,23 @@ export class OrderController {
     },
     description: 'Created order object',
     required: true,
-  }) _requestBody: Order): Promise<unknown> {
-    throw new Error('Not implemented');
+  }) _requestBody: Order): Promise<any | undefined> {
+    if (!(_requestBody.orderID)) {
+      console.log("ERROR! Не указан идентификатор заказа");
+      return this.response.status(400).send(this.errorRes(400, 'Не указан идентификатор заказа!'));
+    }
+    const filter = {
+      where: {
+        orderID: _requestBody.orderID,
+      }
+    };
+    const sameID = await this.orderRepo.findOne(filter)
+    if (sameID) {
+      return this.response.status(400).send(this.errorRes(400, 'Это заказ уже был создан!'))
+    }
+    const newOrder = await this.orderRepo.create(_requestBody);
+
+    return this.response.status(200).send(newOrder);
   }
   /**
    * Returns order
@@ -229,6 +232,14 @@ export class OrderController {
     },
   }) orderId: string): Promise<unknown> {
     throw new Error('Not implemented');
+  }
+
+  errorRes(code: number, mes: string): any {
+    return {
+      statusCode: code,
+      code: "error",
+      message: mes
+    }
   }
 }
 

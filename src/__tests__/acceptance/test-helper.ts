@@ -1,4 +1,4 @@
-import {OtusHw22IdemApplication} from '../..';
+import {Idempotency} from '../..';
 import {
   createRestAppClient,
   givenHttpServerConfig,
@@ -14,7 +14,7 @@ export async function setupApplication(): Promise<AppWithClient> {
     // port: +process.env.PORT,
   });
 
-  const app = new OtusHw22IdemApplication({
+  const app = new Idempotency({
     rest: restConfig,
   });
 
@@ -27,6 +27,6 @@ export async function setupApplication(): Promise<AppWithClient> {
 }
 
 export interface AppWithClient {
-  app: OtusHw22IdemApplication;
+  app: Idempotency;
   client: Client;
 }

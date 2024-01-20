@@ -1,9 +1,9 @@
-import {ApplicationConfig, OtusHw22IdemApplication} from './application';
+import {ApplicationConfig, Idempotency} from './application';
 
 export * from './application';
 
 export async function main(options: ApplicationConfig = {}) {
-  const app = new OtusHw22IdemApplication(options);
+  const app = new Idempotency(options);
   await app.boot();
   await app.start();
 

@@ -1,9 +1,9 @@
 import {Client, expect} from '@loopback/testlab';
-import {OtusHw22IdemApplication} from '../..';
+import {Idempotency} from '../..';
 import {setupApplication} from './test-helper';
 
 describe('PingController', () => {
-  let app: OtusHw22IdemApplication;
+  let app: Idempotency;
   let client: Client;
 
   before('setupApplication', async () => {

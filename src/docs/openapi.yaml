@@ -77,27 +77,14 @@ components:
       type: object
       properties:
         orderID:
-          type: string
-          id: true
+          type: integer
+          format: int64
         userID:
           type: string
           maxLength: 256
         price:
           type: number
           minimum: 0
-        goods:
-          type: array
-          items:
-            type: object
-            properties:
-              goodID:
-                type: string
-              num:
-                type: integer
-                minimum: 0
-              goodPrice:
-                type: number
-                minimum: 0
     Error:
       type: object
       required:
@@ -109,6 +96,7 @@ components:
           format: int32
         message:
           type: string
+
   requestBodies:
     OrderArray:
       content:

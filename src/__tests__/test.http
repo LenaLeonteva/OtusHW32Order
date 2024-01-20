@@ -1,19 +1,12 @@
 #@host=http://arch.homework
 @host=http://127.0.0.1:3000
 
-### reister
+### register
 POST {{host}}/order/create
 Content-Type: application/json
 
 {
-  "id": "abcde",
+  "orderID": "{{$guid}}",
   "userID": "kot",
-  "price": "1000",
-  "goods": [
-    {
-      "goodID": "a1",
-      "num": "10",
-      "goodPrice": "100"
-    }
-  ]
+  "price": 1000
 }

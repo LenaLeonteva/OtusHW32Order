@@ -1,5 +1,5 @@
 import {ApplicationConfig} from '@loopback/core';
-import {OtusHw22IdemApplication} from './application';
+import {Idempotency} from './application';
 
 /**
  * Export the OpenAPI spec from the application
@@ -12,7 +12,7 @@ async function exportOpenApiSpec(): Promise<void> {
     },
   };
   const outFile = process.argv[2] ?? '';
-  const app = new OtusHw22IdemApplication(config);
+  const app = new Idempotency(config);
   await app.boot();
   await app.exportOpenApiSpec(outFile);
 }
