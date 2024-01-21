@@ -76,15 +76,25 @@ components:
     Order:
       type: object
       properties:
-        orderID:
-          type: integer
-          format: int64
-        userID:
+        order_id:
+          type: string
+        user_id:
           type: string
           maxLength: 256
         price:
           type: number
+          format: float
           minimum: 0
+        product_id:
+          type: number
+          format: int32
+        number:
+          type: number
+          format: int32
+        date:
+          type: string
+        completed:
+          type: boolean
     Error:
       type: object
       required:
@@ -96,7 +106,6 @@ components:
           format: int32
         message:
           type: string
-
   requestBodies:
     OrderArray:
       content:

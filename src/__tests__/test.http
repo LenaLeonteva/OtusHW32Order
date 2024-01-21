@@ -6,7 +6,7 @@ POST {{host}}/order/create
 Content-Type: application/json
 
 {
-  "orderID": "{{$guid}}",
-  "userID": "kot",
+  "order_id": "{{$guid}}",
+  "user_id": "kot",
   "price": 1000
 }

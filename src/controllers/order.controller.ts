@@ -15,17 +15,32 @@ import {OrderRepository} from '../repositories';
       Order: {
         type: 'object',
         properties: {
-          orderID: {
+          order_id: {
             type: 'string',
           },
-          userID: {
+          user_id: {
             type: 'string',
             maxLength: 256,
           },
           price: {
             type: 'number',
-            minimum: 0,
+            format: 'float',
           },
+          product_id: {
+            type: 'number',
+            format: 'int32',
+          },
+          number: {
+            type: 'number',
+            format: 'int32',
+          },
+          completed: {
+            type: 'boolean',
+          },
+          date: {
+            type: 'string',
+          },
+
         },
       },
       Error: {
@@ -110,13 +125,13 @@ export class OrderController {
     description: 'Created order object',
     required: true,
   }) _requestBody: Order): Promise<any | undefined> {
-    if (!(_requestBody.orderID)) {
+    if (!(_requestBody.order_id)) {
       console.log("ERROR! Не указан идентификатор заказа");
       return this.response.status(400).send(this.errorRes(400, 'Не указан идентификатор заказа!'));
     }
     const filter = {
       where: {
-        orderID: _requestBody.orderID,
+        order_id: _requestBody.order_id,
       }
     };
     const sameID = await this.orderRepo.findOne(filter)
