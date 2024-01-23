@@ -79,8 +79,8 @@ components:
         order_id:
           type: string
         user_id:
-          type: string
-          maxLength: 256
+          type: number
+          format: int32
         price:
           type: number
           format: float

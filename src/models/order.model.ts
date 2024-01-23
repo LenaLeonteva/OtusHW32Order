@@ -27,10 +27,12 @@ export class Order extends Entity {
    *
    */
   @property({
-    type: 'string',
-    maxLength: 256,
+    type: 'number',
+    format: 'int32',
+    minimum: 0,
+    maximum: 2147483647,
   })
-  user_id?: string;
+  user_id?: number;
 
   /**
    *

@@ -1,5 +1,5 @@
 import {format} from '@loopback/logging';
-import {CONFIG} from '../main-config';
+
 
 /* Уровни логирования winston по умолчанию. По ним смотрим что нужно логировать, а что нет*/
 const logLevels = {
@@ -16,7 +16,7 @@ export class WinstonLoggerWrapper {
   private winston = require('winston');
 
   public winstonLogger = this.winston.createLogger({
-    level: CONFIG.logLevel,
+    level: logLevels.verbose,
     format: format.combine(
       format.splat(),
       format.json(),
@@ -44,7 +44,7 @@ export class WinstonLoggerWrapper {
     const logLevelNum = (<any>logLevels)[level];
 
     //Если уровень логирования больше ограничения LOG_LEVEL, то записываем в лог
-    if (logLevelNum <= (<any>logLevels)[CONFIG.logLevel]) {
+    if (logLevelNum <= (<any>logLevels)[logLevels.verbose]) {
       this.winstonLogger.log(level, message, {
         metadata: metadata,
         message: message,

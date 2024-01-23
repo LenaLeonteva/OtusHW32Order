@@ -1,5 +1,5 @@
-import axios, {AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse, AxiosResponseHeaders} from "axios";
-import {CONFIG} from '../../main-config';
+import axios, {AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse, AxiosResponseHeaders, RawAxiosResponseHeaders} from "axios";
+//import {CONFIG} from '../../main-config';
 
 export class Connector {
   private instance: AxiosInstance
@@ -89,7 +89,7 @@ export class Connector {
   private prepareForEgress(options: AxiosRequestConfig) {
     if (!options.headers) options.headers = {}
     //options.headers['X-Request-ID'] = `${this.context.request?.get('X-Request-ID')}`
-    options.headers['User-Agent'] = CONFIG.userAgent
+    // options.headers['User-Agent'] = CONFIG.userAgent
   }
 
 
@@ -117,7 +117,7 @@ interface logMessage {
 export interface ConnectorResponse {
   readonly status: ConnectorResponseStatus
   readonly httpStatusCode?: number
-  readonly headers?: AxiosResponseHeaders
+  readonly headers?: AxiosResponseHeaders | RawAxiosResponseHeaders
   readonly data?: any
   readonly error?: string
 }
