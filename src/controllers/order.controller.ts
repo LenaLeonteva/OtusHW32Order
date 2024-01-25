@@ -191,7 +191,7 @@ export class OrderController {
     if (courierRes.error) {
       let payDel = await payment.delReq(payReq);
       console.log("Delete Payment", payDel);
-      let stockDel = await payment.delReq(stockRec);
+      let stockDel = await stock.delReq(stockRec);
       console.log("Delete product reserve", stockDel);
       //let courierDel = await payment.delReq(courierRec);
       console.log(`Невозможно доставить товар по вашему адресу. Деньги поступят на счет в течение 15 минут. Заказ отменён.`)

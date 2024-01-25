@@ -15,7 +15,7 @@ spec:
         app: order
     spec:
       containers:
-        - name: hw22idem
-          image: kisuni/hw22idem
+        - name: hw32order
+          image: kisuni/hw32order
           ports:
             - containerPort: 8000

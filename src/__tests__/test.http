@@ -10,6 +10,6 @@ Content-Type: application/json
   "user_id": 1,
   "price": 10,
   "product_id": 2,
-  "number": 5,
+  "number": 1,
   "date": "24.01.2024"
 }

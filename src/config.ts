@@ -1,12 +1,12 @@
 export const CONFIG = {
   payment: {
-    host: "http://127.0.0.1:3001/balance/reserve",
+    host: "http://arch.homework/balance/reserve",
   },
   stock: {
-    host: "http://127.0.0.1:3002/products/reserve",
+    host: "http://arch.homework/products/reserve",
   },
   delivery: {
-    host: "http://127.0.0.1:3003/courier/reserve",
+    host: "http://arch.homework/courier/reserve",
   },
   trace: true
 }

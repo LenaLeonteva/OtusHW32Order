@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: stock-ingress
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: arch.homework
+      http:
+        paths:
+          - path: /product/add
+            pathType: Prefix
+            backend:
+              service:
+                name: stock-service
+                port:
+                  number: 80
+          - path: /product/reserve
+            pathType: Prefix
+            backend:
+              service:
+                name: stock-service
+                port:
+                  number: 80
