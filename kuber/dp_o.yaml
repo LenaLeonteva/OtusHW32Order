@@ -19,3 +19,19 @@ spec:
           image: kisuni/hw32order
           ports:
             - containerPort: 8000
+          env:
+            - name: PAYMENT_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: order-configmap
+                  key: PAYMENT_HOST
+            - name: STOCK_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: order-configmap
+                  key: STOCK_HOST
+            - name: DELIVERY_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: order-configmap
+                  key: DELIVERY_HOST
