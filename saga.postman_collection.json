@@ -56,7 +56,7 @@
 					"script": {
 						"exec": [
 							"var responseJSON = JSON.parse(responseBody)\r",
-							"pm.collectionVariables.set(\"IDtoken\", responseJSON[\"IDtoken\"])\r",
+							"pm.collectionVariables.set(\"IDuser\", responseJSON[\"user_id\"])\r",
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
 							"});"
@@ -765,22 +765,22 @@
 		},
 		{
 			"key": "base_url_d",
-			"value": "http://127.0.0.1:3003",
+			"value": "http://arch.homework",
 			"type": "string"
 		},
 		{
 			"key": "base_url_s",
-			"value": "http://127.0.0.1:3002",
+			"value": "http://arch.homework",
 			"type": "string"
 		},
 		{
 			"key": "base_url_p",
-			"value": "http://127.0.0.1:3001",
+			"value": "http://arch.homework",
 			"type": "string"
 		},
 		{
 			"key": "base_url_o",
-			"value": "http://127.0.0.1:3000",
+			"value": "http://arch.homework",
 			"type": "string"
 		},
 		{
